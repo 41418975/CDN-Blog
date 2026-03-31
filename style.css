@@ -8885,3 +8885,777 @@ h1[id*=toc-head]::before,h2[id*=toc-head]::before,h3[id*=toc-head]::before,h4[id
 .bangumi-next i {
     color: orange;
 }
+
+/* ============================================
+   移动端布局修复 - Mobile Layout Fixes
+   ============================================ */
+
+/* 1. 首页封面/头部修复 */
+@media (max-width: 860px) {
+    /* 首页封面高度调整 */
+    .headertop {
+        min-height: 100vh !important;
+        height: auto !important;
+    }
+    
+    .headertop-bar {
+        height: auto !important;
+        min-height: 100vh !important;
+    }
+    
+    /* 封面内容居中 */
+    .centerbg {
+        background-position: center center !important;
+        background-size: cover !important;
+        min-height: 100vh !important;
+    }
+    
+    /* 封面标题大小调整 */
+    .header-info .glitch {
+        font-size: 28px !important;
+    }
+    
+    .header-info p {
+        font-size: 14px !important;
+        padding: 0 20px !important;
+    }
+    
+    /* 封面按钮调整 */
+    .header-info .top-social {
+        margin-top: 20px !important;
+    }
+    
+    .header-info .top-social li {
+        margin: 0 8px !important;
+    }
+    
+    /* 文章封面头部 */
+    .pattern-center {
+        height: auto !important;
+        min-height: 200px !important;
+    }
+    
+    .pattern-attachment-img {
+        height: 220px !important;
+        min-height: 180px !important;
+    }
+    
+    .pattern-center h1.cat-title,
+    .pattern-center h1.entry-title {
+        font-size: 22px !important;
+        padding: 0 15px !important;
+        line-height: 1.4 !important;
+    }
+    
+    .pattern-center-sakura h1.cat-title,
+    .pattern-center-sakura h1.entry-title {
+        font-size: 22px !important;
+        width: 90% !important;
+    }
+    
+    .single-center .entry-census {
+        font-size: 12px !important;
+        padding: 10px 0 0 !important;
+    }
+    
+    .single-center .entry-census span img {
+        width: 28px !important;
+        height: 28px !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .header-info .glitch {
+        font-size: 22px !important;
+    }
+    
+    .header-info p {
+        font-size: 13px !important;
+    }
+    
+    .pattern-attachment-img {
+        height: 180px !important;
+    }
+    
+    .pattern-center h1.cat-title,
+    .pattern-center h1.entry-title {
+        font-size: 18px !important;
+    }
+}
+
+/* 2. 导航菜单修复 */
+@media (max-width: 860px) {
+    /* 移动端导航头部 */
+    .openNav {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 50px !important;
+        background: rgba(255, 255, 255, 0.95) !important;
+        z-index: 99999 !important;
+        box-shadow: 0 1px 10px rgba(0, 0, 0, 0.1) !important;
+    }
+    
+    .openNav .icon,
+    .openNav .icon:after,
+    .openNav .icon:before {
+        background-color: #333 !important;
+    }
+    
+    /* 移动端导航菜单 */
+    #mo-nav {
+        position: fixed !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 0 !important;
+        max-width: 280px !important;
+        height: 100% !important;
+        background-color: #fff !important;
+        z-index: 99998 !important;
+        overflow-y: auto !important;
+        overflow-x: hidden !important;
+        -webkit-overflow-scrolling: touch !important;
+        transition: width 0.3s ease !important;
+    }
+    
+    #mo-nav.open {
+        width: 280px !important;
+    }
+    
+    /* 移动端 Logo 位置 */
+    .site-branding {
+        position: fixed !important;
+        top: 0 !important;
+        right: 0 !important;
+        left: auto !important;
+        float: none !important;
+        height: 50px !important;
+        line-height: 50px !important;
+        margin-right: 10px !important;
+        z-index: 100000 !important;
+    }
+    
+    .site-title img {
+        height: 35px !important;
+        margin-top: 7px !important;
+    }
+    
+    /* 移动端导航头像 */
+    #mo-nav .m-avatar {
+        padding: 40px 0 20px !important;
+    }
+    
+    #mo-nav .m-avatar img {
+        width: 70px !important;
+        height: 70px !important;
+    }
+    
+    /* 移动端搜索框 */
+    #mo-nav .m-search form {
+        width: calc(100% - 30px) !important;
+        max-width: 250px !important;
+        margin: 0 15px 20px !important;
+    }
+    
+    #mo-nav .m-search input {
+        font-size: 14px !important;
+        padding: 10px !important;
+    }
+    
+    /* 移动端菜单项 */
+    #mo-nav ul {
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    
+    #mo-nav ul li {
+        padding: 12px 20px !important;
+        border-bottom: 1px solid #f0f0f0 !important;
+    }
+    
+    #mo-nav ul li a {
+        font-size: 15px !important;
+        color: #333 !important;
+        display: block !important;
+    }
+    
+    #mo-nav li ul {
+        padding-left: 15px !important;
+        margin: 0 !important;
+        background: #fafafa !important;
+    }
+    
+    #mo-nav li ul li {
+        padding: 10px 20px !important;
+        border-bottom: none !important;
+    }
+    
+    #mo-nav li ul li a {
+        font-size: 14px !important;
+        color: #666 !important;
+    }
+    
+    /* 主容器移动效果 */
+    #main-container {
+        transition: transform 0.3s ease !important;
+    }
+    
+    #main-container.open {
+        transform: translateX(280px) !important;
+        position: fixed !important;
+        width: 100% !important;
+    }
+    
+    /* 暗色模式导航修复 */
+    body.dark .openNav {
+        background: rgba(49, 54, 59, 0.95) !important;
+    }
+    
+    body.dark .openNav .icon,
+    body.dark .openNav .icon:after,
+    body.dark .openNav .icon:before {
+        background-color: #eee !important;
+    }
+    
+    body.dark #mo-nav {
+        background-color: #31363b !important;
+    }
+    
+    body.dark #mo-nav ul li {
+        border-bottom-color: #454545 !important;
+    }
+    
+    body.dark #mo-nav ul li a {
+        color: #eee !important;
+    }
+    
+    body.dark #mo-nav li ul {
+        background: #3a3f44 !important;
+    }
+    
+    body.dark #mo-nav li ul li a {
+        color: #bbb !important;
+    }
+}
+
+/* 3. 文章列表修复 */
+@media (max-width: 860px) {
+    /* 文章列表容器 */
+    .site-content {
+        padding: 0 15px !important;
+        max-width: 100% !important;
+    }
+    
+    /* 文章卡片 */
+    .post-list-thumb {
+        margin: 15px 0 !important;
+        height: auto !important;
+        min-height: auto !important;
+    }
+    
+    .post-thumb {
+        float: none !important;
+        width: 100% !important;
+    }
+    
+    .post-thumb a {
+        height: 180px !important;
+        border-radius: 10px 10px 0 0 !important;
+    }
+    
+    .post-content-wrap {
+        float: none !important;
+        width: 100% !important;
+        margin: 0 !important;
+        padding: 15px !important;
+    }
+    
+    .float-content {
+        padding: 0 !important;
+    }
+    
+    .post-list-thumb .post-title h3 {
+        font-size: 16px !important;
+        line-height: 1.5 !important;
+        margin-bottom: 8px !important;
+    }
+    
+    .float-content .post-text {
+        font-size: 13px !important;
+        line-height: 1.6 !important;
+    }
+    
+    .float-content p {
+        -webkit-line-clamp: 2 !important;
+        height: auto !important;
+        max-height: 52px !important;
+        margin-bottom: 10px !important;
+    }
+    
+    /* 文章元信息 */
+    .post-meta {
+        font-size: 11px !important;
+    }
+    
+    .post-date,
+    .post-meta a {
+        font-size: 11px !important;
+    }
+    
+    /* 特色文章隐藏 */
+    .top-feature,
+    .top-feature-row {
+        display: none !important;
+    }
+    
+    /* 简单列表样式 */
+    .post-list {
+        margin: 0 0 5% 0 !important;
+    }
+    
+    .post-list h1.entry-title {
+        font-size: 15px !important;
+        line-height: 1.5 !important;
+        margin: 0 0 0 60px !important;
+    }
+    
+    .feature img {
+        width: 45px !important;
+        height: 45px !important;
+    }
+    
+    .p-time {
+        margin: -12px 0 0 60px !important;
+        font-size: 11px !important;
+    }
+    
+    .post-list p {
+        margin: 15px 0 0 60px !important;
+        font-size: 13px !important;
+        height: auto !important;
+        max-height: 40px !important;
+        overflow: hidden !important;
+    }
+}
+
+@media (max-width: 480px) {
+    .post-thumb a {
+        height: 150px !important;
+    }
+    
+    .post-list-thumb .post-title h3 {
+        font-size: 15px !important;
+    }
+    
+    .float-content .post-text {
+        font-size: 12px !important;
+    }
+}
+
+/* 4. 文章内容页修复 */
+@media (max-width: 860px) {
+    /* 文章标题 */
+    h1.entry-title {
+        font-size: 20px !important;
+        line-height: 1.4 !important;
+    }
+    
+    /* 文章内容 */
+    .entry-content {
+        padding: 0 !important;
+    }
+    
+    .entry-content p {
+        font-size: 15px !important;
+        line-height: 1.8 !important;
+        margin-bottom: 1.2em !important;
+    }
+    
+    .entry-content h2 {
+        font-size: 18px !important;
+        margin: 1.5em 0 0.8em !important;
+    }
+    
+    .entry-content h3 {
+        font-size: 16px !important;
+        margin: 1.2em 0 0.6em !important;
+    }
+    
+    .entry-content h4 {
+        font-size: 15px !important;
+    }
+    
+    /* 图片自适应 */
+    .entry-content img {
+        max-width: 100% !important;
+        height: auto !important;
+        margin: 10px 0 !important;
+    }
+    
+    /* 引用块 */
+    blockquote {
+        padding: 15px 20px !important;
+        margin: 15px 0 !important;
+    }
+    
+    blockquote:before {
+        font-size: 2rem !important;
+        top: -15px !important;
+        left: 10px !important;
+    }
+    
+    blockquote:after {
+        font-size: 2rem !important;
+        bottom: -15px !important;
+    }
+    
+    blockquote p {
+        font-size: 14px !important;
+    }
+    
+    /* 代码块 */
+    pre {
+        font-size: 13px !important;
+        padding: 15px !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    code {
+        font-size: 13px !important;
+        word-break: break-all !important;
+    }
+    
+    /* 列表 */
+    .entry-content ul,
+    .entry-content ol {
+        padding-left: 20px !important;
+        margin: 1em 0 !important;
+    }
+    
+    /* 表格滚动 */
+    .entry-content table {
+        display: block !important;
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    /* 文章底部信息 */
+    .post-footer {
+        height: auto !important;
+        padding: 15px 0 !important;
+    }
+    
+    .post-tags {
+        float: none !important;
+        text-align: center !important;
+        margin-bottom: 10px !important;
+    }
+    
+    .post-like {
+        float: none !important;
+        text-align: center !important;
+    }
+    
+    /* 作者信息隐藏 */
+    .author-profile {
+        display: none !important;
+    }
+    
+    /* 上下篇文章导航 */
+    .post-squares.nextprev article {
+        height: auto !important;
+        min-height: 100px !important;
+        padding: 20px !important;
+    }
+    
+    .post-squares h3 {
+        font-size: 14px !important;
+        white-space: normal !important;
+    }
+}
+
+@media (max-width: 480px) {
+    h1.entry-title {
+        font-size: 18px !important;
+    }
+    
+    .entry-content p {
+        font-size: 14px !important;
+    }
+    
+    .entry-content h2 {
+        font-size: 16px !important;
+    }
+    
+    .entry-content h3 {
+        font-size: 15px !important;
+    }
+}
+
+/* 5. 侧边栏修复 */
+@media (max-width: 860px) {
+    /* 移动端侧边栏改为底部抽屉 */
+    .widget-area {
+        display: none !important;
+        position: fixed !important;
+        top: auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
+        right: 0 !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        max-height: 60vh !important;
+        z-index: 9999 !important;
+        background-color: rgba(255, 255, 255, 0.98) !important;
+        box-shadow: 0 -2px 20px rgba(0, 0, 0, 0.15) !important;
+        border-radius: 15px 15px 0 0 !important;
+        transform: translateY(100%) !important;
+        transition: transform 0.3s ease !important;
+        overflow-y: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    .widget-area.active {
+        display: block !important;
+        transform: translateY(0) !important;
+        left: 0 !important;
+    }
+    
+    .widget-area .sakura_widget {
+        padding: 20px 15px !important;
+        max-height: 55vh !important;
+    }
+    
+    .widget-area .heading {
+        position: relative !important;
+        padding: 15px !important;
+        font-size: 16px !important;
+    }
+    
+    .widget-area .show-hide-wrap {
+        display: none !important;
+    }
+    
+    /* 移动端侧边栏关闭按钮 */
+    .widget-area::before {
+        content: '' !important;
+        position: absolute !important;
+        top: 8px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        width: 40px !important;
+        height: 4px !important;
+        background: #ddd !important;
+        border-radius: 2px !important;
+    }
+    
+    /* 暗色模式侧边栏 */
+    body.dark .widget-area {
+        background-color: rgba(49, 54, 59, 0.98) !important;
+    }
+    
+    body.dark .widget-area::before {
+        background: #666 !important;
+    }
+}
+
+/* 6. 评论区修复 */
+@media (max-width: 860px) {
+    .comments {
+        padding: 20px 0 !important;
+    }
+    
+    .comments .commentwrap {
+        padding: 0 15px !important;
+    }
+    
+    .comment .body p {
+        font-size: 13px !important;
+        line-height: 1.6 !important;
+    }
+    
+    .comment .commeta {
+        font-size: 14px !important;
+        margin-left: 0 !important;
+    }
+    
+    .comment .profile {
+        display: none !important;
+    }
+    
+    .comment .children {
+        padding-left: 15px !important;
+    }
+    
+    /* 评论表单 */
+    .comment-respond input {
+        width: 100% !important;
+        margin-bottom: 10px !important;
+        padding: 12px 15px !important;
+        font-size: 14px !important;
+    }
+    
+    .comment-respond textarea {
+        height: 120px !important;
+        font-size: 14px !important;
+        padding: 12px 15px !important;
+    }
+    
+    .comment-respond input[type=submit] {
+        width: 100% !important;
+        padding: 12px 20px !important;
+    }
+    
+    .cmt-popup {
+        width: 100% !important;
+        margin: 10px 0 0 0 !important;
+    }
+    
+    .cmt-author {
+        margin-left: 0 !important;
+    }
+}
+
+/* 7. 页脚修复 */
+@media (max-width: 860px) {
+    .site-footer {
+        padding: 20px 15px !important;
+    }
+    
+    .site-info {
+        font-size: 12px !important;
+    }
+    
+    .footertext p {
+        margin-bottom: 5px !important;
+    }
+}
+
+/* 8. 其他移动端优化 */
+@media (max-width: 860px) {
+    /* 分页导航 */
+    .navigator {
+        margin: 40px 0 !important;
+    }
+    
+    .navigator i {
+        font-size: 14px !important;
+        padding: 8px !important;
+    }
+    
+    /* 返回顶部按钮 */
+    #moblieGoTop,
+    #moblieDarkLight {
+        padding: 12px !important;
+        font-size: 18px !important;
+    }
+    
+    /* 隐藏不必要元素 */
+    .post-more {
+        display: none !important;
+    }
+    
+    .info-meta {
+        display: none !important;
+    }
+    
+    .overlay {
+        display: none !important;
+    }
+    
+    /* 链接页面 */
+    .links ul li {
+        width: 100% !important;
+        margin: 0 0 10px 0 !important;
+    }
+    
+    /* 归档页面 */
+    #archives-temp {
+        padding: 0 15px !important;
+    }
+    
+    /* 搜索框 */
+    .search-form input {
+        font-size: 14px !important;
+        padding: 10px 15px !important;
+    }
+}
+
+/* 9. 触摸设备优化 */
+@media (hover: none) and (pointer: coarse) {
+    /* 增加点击区域 */
+    .site-top ul li a {
+        padding: 15px 10px !important;
+    }
+    
+    #mo-nav ul li {
+        padding: 15px 20px !important;
+    }
+    
+    #mo-nav ul li a {
+        display: block !important;
+        width: 100% !important;
+    }
+    
+    /* 移除悬停效果 */
+    .post-list-thumb:hover {
+        transform: none !important;
+    }
+    
+    .post-thumb a img:hover {
+        transform: none !important;
+    }
+}
+
+/* 10. 横屏模式优化 */
+@media (max-width: 860px) and (orientation: landscape) {
+    .headertop {
+        min-height: 100vh !important;
+    }
+    
+    .pattern-attachment-img {
+        height: 180px !important;
+    }
+    
+    .post-thumb a {
+        height: 150px !important;
+    }
+}
+
+/* 11. 高分辨率移动设备优化 */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    .site-title img {
+        image-rendering: -webkit-optimize-contrast !important;
+    }
+}
+
+/* 12. 安全区域适配 (iPhone X 等) */
+@supports (padding: env(safe-area-inset-bottom)) {
+    @media (max-width: 860px) {
+        .site-footer {
+            padding-bottom: calc(20px + env(safe-area-inset-bottom)) !important;
+        }
+        
+        #moblieGoTop,
+        #moblieDarkLight {
+            bottom: calc(60px + env(safe-area-inset-bottom)) !important;
+        }
+        
+        #moblieDarkLight {
+            bottom: calc(10px + env(safe-area-inset-bottom)) !important;
+        }
+        
+        .widget-area {
+            padding-bottom: env(safe-area-inset-bottom) !important;
+        }
+        
+        #mo-nav {
+            padding-bottom: env(safe-area-inset-bottom) !important;
+        }
+    }
+}
