@@ -1,1 +1,1 @@
-基于Sakura的主题修改https://github.com/mashirozx/sakura/tree/3.x/cdn
+基于[Sakura](https://github.com/mashirozx/sakura)的主题修改
