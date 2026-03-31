@@ -929,6 +929,23 @@ function resetpassword_message_fix($message)
 }
 add_filter('retrieve_password_message', 'resetpassword_message_fix');
 
+// 显示访客当前 IP
+function get_the_user_ip()
+{
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+//check ip from share internet
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+//to check ip is pass from proxy
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    } else {
+        $ip = $_SERVER['REMOTE_ADDR'];
+    }
+    return apply_filters('wpb_get_ip', $ip);
+}
+
+add_shortcode('show_ip', 'get_the_user_ip');
+
 //Fix register email bug </>
 function new_user_message_fix($message)
 {
@@ -1283,23 +1300,6 @@ function toc_support($content)
 add_filter('the_content', 'toc_support');
 add_filter('the_excerpt_rss', 'toc_support');
 add_filter('the_content_feed', 'toc_support');
-
-// 显示访客当前 IP
-function get_the_user_ip()
-{
-    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-//check ip from share internet
-        $ip = $_SERVER['HTTP_CLIENT_IP'];
-    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-//to check ip is pass from proxy
-        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-    } else {
-        $ip = $_SERVER['REMOTE_ADDR'];
-    }
-    return apply_filters('wpb_get_ip', $ip);
-}
-
-add_shortcode('show_ip', 'get_the_user_ip');
 
 /*歌词*/
 function hero_get_lyric()
@@ -1758,10 +1758,15 @@ function change_avatar($avatar)
                 preg_match('/:\"([^\"]*)\"/i', $qqavatar, $matches);
                 return '<img src="' . $matches[1] . '" class="lazyload avatar avatar-24 photo" alt="😀" width="24" height="24" onerror="imgError(this,1)">';
             } else {
-                $iv = str_repeat($sakura_privkey, 2);
-                $encrypted = openssl_encrypt($qq_number, 'aes-128-cbc', $sakura_privkey, 0, $iv);
-                $encrypted = urlencode(base64_encode($encrypted));
-                return '<img src="' . rest_url("sakura/v1/qqinfo/avatar") . '?qq=' . $encrypted . '"class="lazyload avatar avatar-24 photo" alt="😀" width="24" height="24" onerror="imgError(this,1)">';
+                if (isset($sakura_privkey) && !empty($sakura_privkey)) {
+                    $iv = str_repeat($sakura_privkey, 2);
+                    $encrypted = openssl_encrypt($qq_number, 'aes-128-cbc', $sakura_privkey, 0, $iv);
+                    $encrypted = urlencode(base64_encode($encrypted));
+                    return '<img src="' . rest_url("sakura/v1/qqinfo/avatar") . '?qq=' . $encrypted . '"class="lazyload avatar avatar-24 photo" alt="😀" width="24" height="24" onerror="imgError(this,1)">';
+                } else {
+                    // 如果sakura_privkey未定义，使用默认的QQ头像链接
+                    return '<img src="https://q2.qlogo.cn/headimg_dl?dst_uin=' . $qq_number . '&spec=100" class="lazyload avatar avatar-24 photo" alt="😀" width="24" height="24" onerror="imgError(this,1)">';
+                }
             }
         } else {
             return $avatar;
@@ -1807,13 +1812,13 @@ function markdown_parser($incoming_comment)
     global $wpdb, $comment_markdown_content;
     $re = '/```([\s\S]*?)```[\s]*|`{1,2}[^`](.*?)`{1,2}|\[.*?\]\([\s\S]*?\)/m';
     if (preg_replace($re, 'temp', $incoming_comment['comment_content']) != strip_tags(preg_replace($re, 'temp', $incoming_comment['comment_content']))) {
-        siren_ajax_comment_err('评论只支持Markdown啦，见谅╮(￣▽￣)╭<br>Markdown Supported while <i class="fa fa-code" aria-hidden="true"></i> Forbidden');
+        wp_die('评论只支持Markdown啦，见谅╮(￣▽￣)╭<br>Markdown Supported while <i class="fa fa-code" aria-hidden="true"></i> Forbidden');
         return ($incoming_comment);
     }
-    $myCustomer = $wpdb->get_row("SELECT * FROM wp_comments");
+    $myCustomer = $wpdb->get_row("SELECT * FROM $wpdb->comments");
     //Add column if not present.
     if (!isset($myCustomer->comment_markdown)) {
-        $wpdb->query("ALTER TABLE wp_comments ADD comment_markdown text");
+        $wpdb->query("ALTER TABLE $wpdb->comments ADD comment_markdown text");
     }
     $comment_markdown_content = $incoming_comment['comment_content'];
     include 'inc/Parsedown.php';
@@ -1831,7 +1836,7 @@ function save_markdown_comment($comment_ID, $comment_approved)
     $comment = get_comment($comment_ID);
     $comment_content = $comment_markdown_content;
     //store markdow content
-    $wpdb->query("UPDATE wp_comments SET comment_markdown='" . $comment_content . "' WHERE comment_ID='" . $comment_ID . "';");
+    $wpdb->query($wpdb->prepare("UPDATE $wpdb->comments SET comment_markdown=%s WHERE comment_ID=%d", $comment_content, $comment_ID));
 }
 add_action('comment_post', 'save_markdown_comment', 10, 2);
 
